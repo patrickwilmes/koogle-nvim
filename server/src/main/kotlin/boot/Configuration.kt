@@ -22,25 +22,6 @@ sealed class Value {
     data class StringValue(val value: String) : Value()
 }
 
-fun <K> applyForConfigTriple(
-    noOpAction: () -> K,
-    opAction: (String, String, String) -> K,
-    value1: Value,
-    value2: Value,
-    value3: Value,
-): K {
-    val valueNotDetected = listOf(value1, value2, value3).any { it is Value.NoValue }
-    return if (valueNotDetected) {
-        noOpAction()
-    } else {
-        opAction(
-            (value1 as Value.StringValue).value,
-            (value2 as Value.StringValue).value,
-            (value3 as Value.StringValue).value,
-        )
-    }
-}
-
 fun Application.configValue(configurationValue: ConfigurationValue): Value {
     val configValue = environment.config.propertyOrNull(configurationValue.key)
     return if (configValue == null) Value.NoValue else Value.StringValue(configValue.getString())

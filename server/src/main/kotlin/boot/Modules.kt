@@ -7,7 +7,8 @@
 
 package boot
 
-import com.bit.lake.demo.view.installDemoRoutes
+import com.bit.lake.koogle.lifecycle.installLifecycleRoutes
+import com.bit.lake.koogle.registerKoogleTables
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
 import koin.GlobalKoinContext
@@ -22,10 +23,10 @@ fun Application.modules() {
         GlobalKoinContext.koin = app.koin
     }
     connectToDatabase()
-    executeFlywayMigration()
+    registerKoogleTables()
     installRoutes()
 }
 
 private fun Application.installRoutes() {
-    installDemoRoutes()
+    installLifecycleRoutes()
 }

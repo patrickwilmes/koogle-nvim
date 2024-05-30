@@ -27,6 +27,8 @@ dependencies {
     implementation(CoreDependencies.kotlinXCoroutines)
     implementation(CoreDependencies.logbackClassic)
     implementation(CoreDependencies.caffeine)
+    implementation(CoreDependencies.gradleToolingApi)
+    implementation(CoreDependencies.sqlite)
     implementation(project(":commons"))
     antlr("org.antlr:antlr4:4.5")
     dokkaGfmPlugin(CoreDependencies.dokka)
@@ -40,4 +42,8 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xcontext-receivers")
     }
+}
+
+tasks.named("generateGrammarSource") {
+    dependsOn("compileKotlin")
 }

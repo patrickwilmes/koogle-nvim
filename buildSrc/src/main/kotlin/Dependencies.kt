@@ -39,6 +39,8 @@ object CoreDependencies {
     val koinSlf4j = "io.insert-koin:koin-logger-slf4j:${Versions.koinVersion}"
     val caffeine = "com.github.ben-manes.caffeine:caffeine:${Versions.caffeineVersion}"
     val dokka = "org.jetbrains.dokka:kotlin-as-java-plugin:${Versions.dokkaVersion}"
+    val gradleToolingApi = "org.gradle:gradle-tooling-api:${Versions.gradleToolingApiVersion}"
+    val sqlite = "org.xerial:sqlite-jdbc:${Versions.sqliteVersion}"
 }
 
 object TestDependencies {
@@ -61,7 +63,6 @@ fun DependencyHandler.applyKtorEssentials() {
 fun DependencyHandler.applyArrowEssentials() {
     add("implementation", platform(CoreDependencies.arrowStack))
     add("implementation", CoreDependencies.arrowCore)
-    add("implementation", CoreDependencies.arrowFxCoroutines)
     add("implementation", CoreDependencies.arrowFxStm)
     add("implementation", CoreDependencies.arrowOptics)
     add("implementation", CoreDependencies.arrowSuspendApp)
